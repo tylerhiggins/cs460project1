@@ -1,9 +1,9 @@
 /*
- * my_cat.c: Written by Tyler Higgins
- * This program performs a similar task to the 'cat'
- * program in Unix Systems. This program takes files
- * as arguments from the command line and prints them to 
- * std out.
+ * my_cat.c: Written by Tyler Higgins, Julian Keller, and
+ * Jacob Pugsley. This program performs a similar task to 
+ * the 'cat' program in Unix Systems. This program takes 
+ * files as arguments from the command line and prints them 
+ * to std out.
 */
 #include<stdio.h>
 int main(int argc, char *argv[]){
