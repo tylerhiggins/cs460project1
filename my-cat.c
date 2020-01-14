@@ -5,6 +5,9 @@
  * files as arguments from the command line and prints them 
  * to std out.
 */
+
+// TODO use strerror to output error messages (mainly for fopen fd)
+
 #include<stdio.h>
 int main(int argc, char *argv[]){
 	int buf = 256;			// Buffer size. 
