@@ -2,8 +2,6 @@
 find and replace
 TODO - check valgrind
 TODO - error checking
-TODO - removing an string
-TODO - 
 */
 
 #include <ctype.h>
@@ -11,22 +9,6 @@ TODO -
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
-
-
-/*
-check if the string is empty
-if so return 1, else 0
-*/
-int isempty(char * string) {
-	for (int i = 0; i < strlen(string); i++) {
-		if (!isspace(string[i])) {
-			return 0;
-		}
-	}
-	return 1;
-}
-
-
 
 
 int main(int argc, char *argv[]){
@@ -66,13 +48,7 @@ int main(int argc, char *argv[]){
 				strncpy(substring, line + i, strlen(find));
 				// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
 				if (strncmp(find, substring, strlen(substring)) ==0 ) {
-					if (empty) {
-						strncat(stringToPrint, "", 0);
-					}
-					else {
-						strncat(stringToPrint, replace, strlen(replace));
-					}
-					// strncat(stringToPrint, replace, strlen(replace));
+					strncat(stringToPrint, replace, strlen(replace));
 					i++;
 				}
 				else {
