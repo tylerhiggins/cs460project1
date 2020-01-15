@@ -27,6 +27,7 @@ cat-test: ${CAT}
 
 sed-test: ${SED}
 	@echo --- RUNNING TEST my-sed ---
+	./my-sed "is" "isn't" test1.txt
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
