@@ -1,7 +1,6 @@
 /*
- * my_cat.c: Written by Tyler Higgins, Julian Keller, and
- * Jacob Pugsley. This program performs a similar task to 
- * the 'cat' program in Unix Systems. This program takes 
+ * my_cat.c: Written by Tyler Higgins. This program performs a similar 
+ * task to the program "cat" in Unix/Linux Systems. This program takes 
  * files as arguments from the command line and prints them 
  * to std out.
 */
@@ -27,11 +26,11 @@ int main(int argc, char *argv[]){
 			printf("%s: %s",argv[0], strerror(errno));
 			return 1;
 		}
-		/* Read the contents of the file. So long as fgets does not
-		   read EOF. */
+		/* Read each line of the file, as long as there are 
+		characters to be read. */
 		while(getline(&buffer,&buf,file) > 0){
 			printf("%s",buffer);
-			free(buffer);
+			free(buffer);		// free and reset buffers
 			buffer = NULL;
 			buf = 0;
 		}
