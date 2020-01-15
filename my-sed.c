@@ -49,7 +49,6 @@ int main(int argc, char *argv[]){
 				// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
 				if (strncmp(find, substring, strlen(substring)) ==0 ) {
 					strncat(stringToPrint, replace, strlen(replace));
-					i++;
 				}
 				else {
 					strncat(stringToPrint, substring, strlen(substring)-1);	
