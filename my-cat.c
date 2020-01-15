@@ -9,6 +9,7 @@
 // TODO use strerror to output error messages (mainly for fopen fd)
 
 #include<stdio.h>
+#include<sys/errno.h>
 int main(int argc, char *argv[]){
 	int buf = 256;			// Buffer size. 
 	char buffer[buf];       // Buffer in which to store characters.
@@ -21,6 +22,7 @@ int main(int argc, char *argv[]){
 		file = fopen(argv[i], "r");
 		if(file == NULL){
 			printf("my_cat: Could not open file %s\n", argv[i]);
+			printf("my-cat: %s",strerror(errno))
 			return 1;
 		}
 		/* Read the contents of the file. So long as fgets does not
