@@ -11,6 +11,7 @@
 #include<stdio.h>
 #include<errno.h>
 #include<string.h>
+#include<stdlib.h>
 int main(int argc, char *argv[]){
 	int buf = 0;			// Buffer size. 
 	char *buffer = NULL;       // Buffer in which to store characters.
