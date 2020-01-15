@@ -1,0 +1,6 @@
+*.o
+*.zip
+*.tgz
+my-cat
+my-sed
+my-uniq
