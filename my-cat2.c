@@ -13,7 +13,7 @@
 #include<string.h>
 #include<stdlib.h>
 int main(int argc, char *argv[]){
-	int buf = 0;			// Buffer size. 
+	long unsigned int buf = 0;			// Buffer size. 
 	char *buffer = NULL;       // Buffer in which to store characters.
 	FILE *file = NULL;       // Pointer to the file.
 	/* Iterates through each filename given in the arguments
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
 		}
 		/* Read the contents of the file. So long as fgets does not
 		   read EOF. */
-		while(getline(buffer,buf,file)){
+		while(getline(buffer,&buf,file)){
 			printf("%s",buffer);
 			free(buffer);
 			buffer = NULL;
