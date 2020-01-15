@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
 		}
 		/* Read the contents of the file. So long as fgets does not
 		   read EOF. */
-		while(getline(&buffer,&buf,file)){
+		while(getline(&buffer,&buf,file) > 0){
 			printf("%s",buffer);
 			free(buffer);
 			buffer = NULL;
