@@ -35,6 +35,8 @@ int main(int argc, char *argv[]){
 			buffer = NULL;
 			buf = 0;
 		}
+		/* free the buffer and reset buffer and character count
+		   before moving on to the next file.*/
 		free(buffer);
 		buffer = NULL;
 		buf = 0;
