@@ -13,7 +13,6 @@ TODO - error checking
 
 int main(int argc, char *argv[]){
 	FILE *fp = NULL;									// file pointer
-	int empty = 0;
 	int buf_size = 1024;								// size of buffer
 	char* stringToPrint;
 	char* find = (char *) malloc(buf_size);				// buffer to store find string
