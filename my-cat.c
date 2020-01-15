@@ -9,7 +9,7 @@
 // TODO use strerror to output error messages (mainly for fopen fd)
 
 #include<stdio.h>
-#include<sys/errno.h>
+#include<errno.h>
 #include<string.h>
 int main(int argc, char *argv[]){
 	int buf = 1000;			// Buffer size. 
