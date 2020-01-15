@@ -25,8 +25,9 @@ cat-test: ${CAT}
 	@echo --- RUNNING TEST my-cat ---
 	./my-cat mobydick.txt oneline.txt test1.txt test2.txt
 
-sed-test: ${SED}
+sed-test: all ${SED}
 	@echo --- RUNNING TEST my-sed ---
+	./my-sed "is" "isn't" test1.txt
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
