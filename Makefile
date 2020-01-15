@@ -6,7 +6,6 @@ CAT = my-cat
 SED = my-sed
 UNIQ = my-uniq
 
-# --- Generally don't touch anything below this comment. ---
 .SUFFIXES: .c .o
 CC = gcc
 CCFLAGS = -std=c99 -pedantic -Wall -g -Werror
@@ -31,6 +30,7 @@ sed-test: ${SED}
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
+	./my-uniq test1.txt test2.txt
 
 # val: all
 # 	valgrind --leak-check=full --show-leak-kinds=all ./${EXEC}
