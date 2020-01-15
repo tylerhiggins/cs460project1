@@ -35,6 +35,9 @@ int main(int argc, char *argv[]){
 			buffer = NULL;
 			buf = 0;
 		}
+		free(buffer);
+		buffer = NULL;
+		buf = 0;
 		fclose(file);
 	}
 	return 0;
