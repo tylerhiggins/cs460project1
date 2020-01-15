@@ -1,19 +1,19 @@
 /*
- * my_cat.c: Written by Tyler Higgins, Julian Keller, and
- * Jacob Pugsley. This program performs a similar task to 
- * the 'cat' program in Unix Systems. This program takes 
+ * my_cat.c: Written by Tyler Higgins. This program performs a similar 
+ * task to the program "cat" in Unix/Linux Systems. This program takes 
  * files as arguments from the command line and prints them 
  * to std out.
 */
 
 // TODO use strerror to output error messages (mainly for fopen fd)
-
+#define _POSIX_C_SOURCE 200809L
 #include<stdio.h>
 #include<errno.h>
 #include<string.h>
+#include<stdlib.h>
 int main(int argc, char *argv[]){
-	int buf = 1000;			// Buffer size. 
-	char buffer[buf];       // Buffer in which to store characters.
+	long unsigned int buf = 0;			// Buffer size. 
+	char *buffer = NULL;       // Buffer in which to store characters.
 	FILE *file = NULL;       // Pointer to the file.
 	/* Iterates through each filename given in the arguments
 	   ignoring index 0 since argv[0] is the name of the program
@@ -26,12 +26,19 @@ int main(int argc, char *argv[]){
 			printf("%s: %s",argv[0], strerror(errno));
 			return 1;
 		}
-		/* Read the contents of the file. So long as fgets does not
-		   read EOF. */
-		while(fgets(buffer,buf,file) != NULL){
+		/* Read each line of the file, as long as there are 
+		characters to be read. */
+		while(getline(&buffer,&buf,file) > 0){
 			printf("%s",buffer);
+			free(buffer);		// free and reset buffers
+			buffer = NULL;
+			buf = 0;
 		}
-
+		/* free the buffer and reset buffer and character count
+		   before moving on to the next file.*/
+		free(buffer);
+		buffer = NULL;
+		buf = 0;
 		fclose(file);
 	}
 	return 0;

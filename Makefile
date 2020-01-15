@@ -23,7 +23,7 @@ all: ${OBJS}
 # program tests
 cat-test: ${CAT}
 	@echo --- RUNNING TEST my-cat ---
-	./my-cat test1.txt test2.txt
+	./my-cat mobydick.txt oneline.txt test1.txt test2.txt
 
 sed-test: ${SED}
 	@echo --- RUNNING TEST my-sed ---
