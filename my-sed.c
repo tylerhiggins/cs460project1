@@ -21,13 +21,10 @@ int main(int argc, char *argv[]){
 	char* line = NULL;
 	size_t linecap = 512;
 	ssize_t linelen;
-	strncpy(find, argv[1], sizeof(&argv[1]));			// save the find and replace arguments
+	strncpy(find, argv[1], sizeof(&argv[1]));
 	strncpy(replace, argv[2], sizeof(&argv[2]));
 	char* substring = (char *) malloc(sizeof(find));	// buffer to store lines
-
-	empty = isempty(find);
-
-	// iterate through each file
+	// iterate through each file from the cmd line
 	for (int i = 3; i < argc; i++) {
 		fp = fopen(argv[i], "r");
 		if (fp == NULL) {
@@ -55,7 +52,8 @@ int main(int argc, char *argv[]){
 				}
 			}
 			printf("%s\n", stringToPrint);	
-			free(stringToPrint);
+			strncpy(stringToPrint, "\0", 1);
+			free(stringToPrint);		
 		}
 		fclose(fp);
 	}
