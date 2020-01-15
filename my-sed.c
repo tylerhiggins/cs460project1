@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
 	char* line = NULL;
 	size_t linecap = 512;
 	ssize_t linelen;
+<<<<<<< HEAD
 	strncpy(find, argv[1], sizeof(&argv[1]));			// save the find and replace arguments
 	strncpy(replace, argv[2], sizeof(&argv[2]));
 	char* substring = (char *) malloc(sizeof(find));	// buffer to store lines
@@ -28,13 +29,23 @@ int main(int argc, char *argv[]){
 	empty = isempty(find);
 
 	// iterate through each file
+=======
+	strncpy(find, argv[1], sizeof(&argv[1]));
+	strncpy(replace, argv[2], sizeof(&argv[2]));
+	char* substring = (char *) malloc(sizeof(find));	// buffer to store lines
+	// iterate through each file from the cmd line
+>>>>>>> Resolved memory leak
 	for (int i = 3; i < argc; i++) {
 		fp = fopen(argv[i], "r");
 		if (fp == NULL) {
 			perror("my_sed could not open file ");
 			return 1;
 		}
+<<<<<<< HEAD
 		// get one line of the file at a time
+=======
+		// get the lines of the file
+>>>>>>> Resolved memory leak
 		while ((linelen = getline(&line, &linecap, fp)) > 0) {
 			if (linelen < 0) {
 				perror("Error: ");
@@ -55,7 +66,12 @@ int main(int argc, char *argv[]){
 				}
 			}
 			printf("%s\n", stringToPrint);	
+<<<<<<< HEAD
 			free(stringToPrint);
+=======
+			strncpy(stringToPrint, "\0", 1);
+			free(stringToPrint);		
+>>>>>>> Resolved memory leak
 		}
 		fclose(fp);
 	}
