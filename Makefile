@@ -25,7 +25,7 @@ cat-test: ${CAT}
 	@echo --- RUNNING TEST my-cat ---
 	./my-cat test1.txt test2.txt
 
-sed-test: ${SED}
+sed-test: all ${SED}
 	@echo --- RUNNING TEST my-sed ---
 	./my-sed "is" "isn't" test1.txt
 
