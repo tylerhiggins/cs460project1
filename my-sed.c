@@ -19,15 +19,17 @@ TODO - test case sensitive find/replace
 line - a string which will have variables substituted
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
-	printf("Got Line: %s\n", line);
+	// printf("find: %s\nreplace: %s\nline: %s\nstringToPrint: %s\n", find, replace, line, stringToPrint);
 	char* substring = (char*) malloc(sizeof(find));	// buffer to store lines
 	// naiive string matching
 	for (int i = 0; i < strlen(line); i++) {
-		// copy substring https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
-		strncpy(substring, line + i, strlen(find));
+		// copy substring
+		strncpy(substring, line + i, strlen(find));			// https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
 		// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
-		if (strncmp(find, substring, strlen(substring)) ==0 ) {
+		if (strncmp(find, substring, strlen(substring)) == 0) {
+			// printf("match found at %d\n", i);
 			strncat(stringToPrint, replace, strlen(replace));
+			i++;
 		}
 		else {
 			strncat(stringToPrint, substring, strlen(substring)-1);	
@@ -48,7 +50,7 @@ int main(int argc, char*argv[]){
 	ssize_t linelen;
 
 	// save the find and replace arguments
-	if (argc > 3) {
+	if (argc > 2) {
 		strncpy(find, argv[1], sizeof(&argv[1]));			
 		strncpy(replace, argv[2], sizeof(&argv[2]));
 	}
@@ -61,6 +63,7 @@ int main(int argc, char*argv[]){
 	// get input from stdin
 	// TODO use realloc if string gets too large
 	else if (argc == 3) {
+		// printf("Getting stdin:\n");
 		line = (char*) malloc(buf_size);			// buffer to store replace string
 		if (fgets(line, buf_size, stdin) != NULL) {
 			stringToPrint = (char*) malloc(strlen(line) * sizeof(char));			// string that will be printed
