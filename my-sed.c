@@ -83,7 +83,7 @@ int main(int argc, char*argv[]){
 		line = (char*) calloc(buf_size, sizeof(char));			// buffer to store replace string
 		line[0] = '\0';
 		if (fgets(line, buf_size, stdin) != NULL) {
-			stringToPrint = (char*) calloc(strlen(line), sizeof(char));			// string that will be printed
+			stringToPrint = (char*) calloc(strlen(line) + 1, sizeof(char));			// string that will be printed
 			stringToPrint[0] = '\0';
 			findReplace(find, replace, line, stringToPrint);
 			printf("%s\n", stringToPrint);	
@@ -108,7 +108,7 @@ int main(int argc, char*argv[]){
 					return 1;
 					continue;
 				}
-				stringToPrint = (char*) calloc(linelen, sizeof(char));			// string that will be printed
+				stringToPrint = (char*) calloc(linelen + 1, sizeof(char));			// string that will be printed
 				stringToPrint[0] = '\0';
 				findReplace(find, replace, line, stringToPrint);
 				printf("%s\n", stringToPrint);	
