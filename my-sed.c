@@ -32,7 +32,7 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 		// copy substring
 		strncpy(substring, line + i, strlen(find)+1);			// https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
 		if (strlen(find) > 0) {
-		       substring[strlen(find)]= '\0';
+		       substring[strlen(find)+1]= '\0';
 		}	
 
 		// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
