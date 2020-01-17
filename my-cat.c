@@ -6,7 +6,6 @@
 */
 
 // TODO use strerror to output error messages (mainly for fopen fd)
-#define _POSIX_C_SOURCE 200809L
 #include<stdio.h>
 #include<errno.h>
 #include<string.h>
