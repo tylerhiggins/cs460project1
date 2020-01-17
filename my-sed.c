@@ -29,7 +29,7 @@ line - a string which will have variables substituted
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 	// printf("find: %s\nreplace: %s\nline: %s\nstringToPrint: %s\n", find, replace, line, stringToPrint);
-	char* substring = (char*) calloc(strlen(find) + 1, sizeof(char)); //store lines
+	char* substring = (char*) calloc(strlen(find) + 2, sizeof(char)); //store lines
 	substring[0] = '\0';
 	// char substring[strlen]
 	if (substring == NULL) {
@@ -57,8 +57,8 @@ int main(int argc, char*argv[]){
 	FILE *fp = NULL;									// file pointer
 	int buf_size = 1024;								// size of buffer
 	char* stringToPrint;
-	char* find = (char*) calloc(buf_size, sizeof(char));				// buffer to store find string
-	char* replace = (char*) calloc(buf_size, sizeof(char));			// buffer to store replace string
+	char* find = (char*) calloc(1, buf_size * sizeof(char));				// buffer to store find string
+	char* replace = (char*) calloc(1, buf_size * sizeof(char));			// buffer to store replace string
 	find[0] = '\0';
 	replace[0] = '\0';
 	char* line = NULL;
@@ -67,8 +67,8 @@ int main(int argc, char*argv[]){
 
 	// save the find and replace arguments
 	if (argc > 2) {
-		strncpy(find, argv[1], sizeof(&argv[1]));			
-		strncpy(replace, argv[2], sizeof(&argv[2]));
+		strncpy(find, argv[1], sizeof(&argv[1]) + 1);			
+		strncpy(replace, argv[2], sizeof(&argv[2]) + 1);
 	}
 
 	// show user usage of my-sed if less than 3 args
@@ -80,10 +80,10 @@ int main(int argc, char*argv[]){
 	// TODO use realloc if string gets too large
 	else if (argc == 3) {
 		// printf("Getting stdin:\n");
-		line = (char*) calloc(buf_size, sizeof(char));			// buffer to store replace string
+		line = (char*) calloc(1, buf_size * sizeof(char));			// buffer to store replace string
 		line[0] = '\0';
 		if (fgets(line, buf_size, stdin) != NULL) {
-			stringToPrint = (char*) calloc(strlen(line) + 1, sizeof(char));			// string that will be printed
+			stringToPrint = (char*) calloc(1, (strlen(line) + 1) * sizeof(char));			// string that will be printed
 			stringToPrint[0] = '\0';
 			findReplace(find, replace, line, stringToPrint);
 			printf("%s\n", stringToPrint);	
@@ -108,7 +108,7 @@ int main(int argc, char*argv[]){
 					return 1;
 					continue;
 				}
-				stringToPrint = (char*) calloc(linelen + 1, sizeof(char));			// string that will be printed
+				stringToPrint = (char*) calloc(1, sizeof(char) * (linelen + 1));			// string that will be printed
 				stringToPrint[0] = '\0';
 				findReplace(find, replace, line, stringToPrint);
 				printf("%s\n", stringToPrint);	
