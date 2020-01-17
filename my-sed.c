@@ -7,7 +7,7 @@ TODO - test case sensitive find/replace
 - get input from stdin using fgets from fd 1
 
 */
-
+#define _GNU_SOURCE
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
@@ -20,7 +20,11 @@ line - a string which will have variables substituted
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 	// printf("find: %s\nreplace: %s\nline: %s\nstringToPrint: %s\n", find, replace, line, stringToPrint);
-	char* substring = (char*) malloc(sizeof(find));	// buffer to store lines
+	char* substring = (char*) malloc(sizeof(char) * strlen(find)); //store lines
+	// char substring[strlen]
+	if (substring == NULL) {
+		exit(1);
+	}
 	// naiive string matching
 	for (int i = 0; i < strlen(line); i++) {
 		// copy substring
@@ -47,7 +51,7 @@ int main(int argc, char*argv[]){
 	char* replace = (char*) malloc(buf_size);			// buffer to store replace string
 	char* line = NULL;
 	size_t linecap = 512;
-	ssize_t linelen;
+	ssize_t linelen = 0;
 
 	// save the find and replace arguments
 	if (argc > 2) {
@@ -76,6 +80,7 @@ int main(int argc, char*argv[]){
 	// user specified a find, replace, and at least one file
 	else if (argc > 3) {
 		// iterate through each file from the cmd line
+		// stringToPrint = (char*) malloc(linelen * sizeof(char));			// string that will be printed
 		for (int i = 3; i < argc; i++) {
 			fp = fopen(argv[i], "r");
 			if (fp == NULL) {
@@ -102,5 +107,6 @@ int main(int argc, char*argv[]){
 
 	free(find);
 	free(replace);
+	// free(stringToPrint);
 	return 0;
 }

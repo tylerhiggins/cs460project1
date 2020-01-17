@@ -27,7 +27,7 @@ cat-test: ${CAT}
 
 sed-test: all ${SED}
 	@echo --- RUNNING TEST my-sed ---
-	./my-sed "is" "isn't" test1.txt
+	valgrind --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
