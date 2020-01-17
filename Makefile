@@ -1,7 +1,7 @@
 # Makefile for Mini Unix Utilities
 # cs460-project1
 
-PROJ = cs460-project1-TeamID
+PROJ = cs460-project1-Team1
 CAT = my-cat
 SED = my-sed
 UNIQ = my-uniq
