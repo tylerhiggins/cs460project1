@@ -16,14 +16,6 @@ TODO - test case sensitive find/replace
 
 void findReplace(char* find, char* replace, char* line, char* stringToPrint);
 
-// int mystringlen(char* string) {
-// 	int i = 0;
-// 	while(string[i] != '\0') {
-// 		i++;
-// 	}
-// 	return i;
-// }
-
 /*
 line - a string which will have variables substituted
 */
@@ -38,9 +30,9 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 	// naiive string matching
 	for (int i = 0; i < strlen(line); i++) {
 		// copy substring
-		strncpy(substring, line + i, strlen(find)-1);			// https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
+		strncpy(substring, line + i, strlen(find));			// https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
 		if (strlen(find) > 0) {
-		       substring[strlen(find) - 1]= '\0';
+		       substring[strlen(find)]= '\0';
 		}	
 
 		// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
@@ -50,7 +42,6 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 			i++;
 		}
 		else {
-			printf("stringToPrint: %lu, substring: %lu\n", strlen(stringToPrint), strlen(substring));
 			strncat(stringToPrint, substring, strlen(substring)-1);	
 		}
 	}
