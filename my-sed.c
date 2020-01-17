@@ -46,6 +46,7 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 			i++;
 		}
 		else {
+			printf("stringToPrint: %lu, substring: %lu\n", strlen(stringToPrint), strlen(substring));
 			strncat(stringToPrint, substring, strlen(substring)-1);	
 		}
 	}
