@@ -8,7 +8,7 @@ UNIQ = my-uniq
 
 .SUFFIXES: .c .o
 CC = gcc
-CCFLAGS = -std=c99 -pedantic -Wall -g -Werror
+CCFLAGS = -std=c99 -pedantic -Wall -g -Werror -D_DEFAULT_SOURCE
 OBJS = ${CAT}.o ${SED}.o ${UNIQ}.o
 
 # the info for compiling, runs when 'make' is called
