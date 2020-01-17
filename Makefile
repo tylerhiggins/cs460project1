@@ -41,6 +41,7 @@ clean:
 	rm -f ${CAT} ${CAT}.o  *.o *.tgz *.zip
 	rm -f ${SED} ${SED}.o  *.o *.tgz *.zip
 	rm -f ${UNIQ} ${UNIQ}.o *.o *.tgz *.zip
+	rm a.out
 
 # make a tarball
 tarball: clean
