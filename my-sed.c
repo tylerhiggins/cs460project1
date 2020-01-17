@@ -21,7 +21,7 @@ line - a string which will have variables substituted
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 	// printf("find: %s\nreplace: %s\nline: %s\nstringToPrint: %s\n", find, replace, line, stringToPrint);
-	char* substring = (char*) calloc(strlen(find) + 2, sizeof(char)); //store lines
+	char* substring = (char*) calloc(1, strlen(find) * sizeof(char) + 1); //store lines
 	substring[0] = '\0';
 	// char substring[strlen]
 	if (substring == NULL) {
