@@ -28,11 +28,12 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 		exit(1);
 	}
 	// naiive string matching
-	for (int i = 0; i < strlen(line); i++) {
+	for (int i = 0; i < strlen(line)-1; i++) {
 		// copy substring
-		strncpy(substring, line + i, strlen(find)+1);			// https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
-		if (strlen(find) > 0) {
-		       substring[strlen(find)+1]= '\0';
+		// printf("line+%d = %s\n", i, line+i);
+		strncpy(substring, line + i, strlen(find));			// https://stackoverflow.com/questions/4214314/get-a-substring-of-a-char
+		if (strlen(substring) > 0) {
+		       substring[strlen(find)]= '\0';
 		}	
 
 		// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
@@ -44,6 +45,7 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 		else {
 			strncat(stringToPrint, substring, strlen(substring)-1);	
 		}
+		substring[0] = '\0';
 	}
 	free(substring);
 }
@@ -53,8 +55,8 @@ int main(int argc, char*argv[]){
 	FILE *fp = NULL;									// file pointer
 	int buf_size = 1024;								// size of buffer
 	char* stringToPrint;
-	char* find = (char*) calloc(1, buf_size * sizeof(char));				// buffer to store find string
-	char* replace = (char*) calloc(1, buf_size * sizeof(char));			// buffer to store replace string
+	char* find = (char*) calloc(1, buf_size * sizeof(char) + 1);				// buffer to store find string
+	char* replace = (char*) calloc(1, buf_size * sizeof(char) + 1);			// buffer to store replace string
 	find[0] = '\0';
 	replace[0] = '\0';
 	char* line = NULL;
@@ -65,6 +67,12 @@ int main(int argc, char*argv[]){
 	if (argc > 2) {
 		strncpy(find, argv[1], sizeof(&argv[1]) + 1);			
 		strncpy(replace, argv[2], sizeof(&argv[2]) + 1);
+		if (strlen(find) > 0) {
+		       find[strlen(find)]= '\0';
+		}	
+		if (strlen(replace) > 0) {
+		       replace[strlen(replace)]= '\0';
+		}	
 	}
 
 	// show user usage of my-sed if less than 3 args
