@@ -1,14 +1,14 @@
 # Makefile for Mini Unix Utilities
 # cs460-project1
 
-PROJ = cs460-project1-TeamID
+PROJ = cs460-project1-Team1
 CAT = my-cat
 SED = my-sed
 UNIQ = my-uniq
 
 .SUFFIXES: .c .o
 CC = gcc
-CCFLAGS = -std=c99 -pedantic -Wall -g -Werror
+CCFLAGS = -std=c99 -pedantic -Wall -g -Werror -D_DEFAULT_SOURCE
 OBJS = ${CAT}.o ${SED}.o ${UNIQ}.o
 
 # the info for compiling, runs when 'make' is called
@@ -26,8 +26,13 @@ cat-test: ${CAT}
 	./my-cat mobydick.txt oneline.txt test1.txt test2.txt
 
 sed-test: all ${SED}
-	@echo --- RUNNING TEST my-sed ---
-	./my-sed "is" "isn't" test1.txt
+# 	./my-sed "is" "isn't" test1.txt test2.txt
+# # 	@echo --- RUNNING TEST my-sed ---
+# # # 	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
+	valgrind --track-origins=yes --leak-check=full ./my-sed the TEST mobydick.txt
+# 	echo
+# 	./my-sed apple orange test
+
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
