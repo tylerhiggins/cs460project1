@@ -12,7 +12,7 @@ TODO - handle files we can't open
 #include <stdio.h>
 #include <errno.h>
 
-int DEBUG = 1;
+int DEBUG = 0;
 
 void findReplace(char* find, char* replace, char* line, char* stringToPrint);
 
@@ -24,7 +24,7 @@ line - a string which will have variables substituted
 stringToPrint - string that will be printed after find/replace
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
-	if (DEBUG == 1) printf("\nfind: %s\nreplace: %s\nline: %s\n", find, replace, line);
+	// if (DEBUG == 1) printf("\nfind: %s\nreplace: %s\nline: %s\n", find, replace, line);
 	char* substring = (char*) calloc(1, strlen(find) * sizeof(char) + 1); //store lines
 	substring[0] = '\0';
 	if (substring == NULL) {exit(1);}
@@ -36,33 +36,18 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 		       substring[strlen(find)]= '\0';
 		}	
 		// use strncmp to see if it is a match, if a match is found, concatenate the replacement string instead
-		
 		if (strncmp(find, substring, strlen(substring)) == 0) {
 			strncat(stringToPrint, replace, strlen(replace));
-			// i++;
 			i+=strlen(find)-1;
-			// if (strlen(replace) >= strlen(find)) {
-			// 	i+=strlen(replace);
-			// }
-			// else if (strlen(replace) < strlen(find)) {	
-			// 	i = i + strlen(replace);
-			// }
-
-			
-			// if (DEBUG == 1) printf("Match Found: %s\n", stringToPrint);
 		}
 		else {
-			// strncat(stringToPrint, substring, strlen(substring));
 			strncat(stringToPrint, &line[i], 1);
-			// stringToPrint+= line[i];
-			// if (DEBUG == 1) printf("Not a Match: %s\n", stringToPrint);
 		}
 		
-		if (DEBUG == 1) printf("%d, cmp: '%s' '%s' --> %s\n", i, find, substring, stringToPrint);
+		// if (DEBUG == 1) printf("%d, cmp: '%s' '%s' --> %s\n", i, find, substring, stringToPrint);
 		substring[0] = '\0';
 	}
-	
-	// if (DEBUG == 1) printf("stringToPrint: %s\n", stringToPrint);
+	free(substring);
 }
 
 
@@ -82,8 +67,8 @@ int main(int argc, char*argv[]){
 
 	// save the find and replace arguments
 	if (argc > 2) {
-		strncpy(find, argv[1], sizeof(&argv[1]) + 2);			
-		strncpy(replace, argv[2], sizeof(&argv[2]) + 2);
+		strncpy(find, argv[1], strlen(argv[1]) + 2);			
+		strncpy(replace, argv[2], strlen(argv[2]) + 2);
 		if (strlen(find) > 0) {
 		       find[strlen(find)]= '\0';
 		}	

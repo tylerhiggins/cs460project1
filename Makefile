@@ -29,9 +29,9 @@ sed-test: all ${SED}
 # 	./my-sed "is" "isn't" test1.txt test2.txt
 # # 	@echo --- RUNNING TEST my-sed ---
 # # # 	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
-# 	valgrind --track-origins=yes ./my-sed "is" "isn't" test1.txt
+	valgrind --track-origins=yes --leak-check=full ./my-sed the TEST mobydick.txt
 # 	echo
-	./my-sed apple orange test
+# 	./my-sed apple orange test
 
 
 uniq-test: ${UNIQ}
