@@ -26,10 +26,13 @@ cat-test: ${CAT}
 	./my-cat mobydick.txt oneline.txt test1.txt test2.txt
 
 sed-test: all ${SED}
-	./my-sed "is" "isn't" test1.txt test2.txt
-# 	@echo --- RUNNING TEST my-sed ---
-# # 	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
-	valgrind --track-origins=yes ./my-sed "is" "isn't" test1.txt
+# 	./my-sed "is" "isn't" test1.txt test2.txt
+# # 	@echo --- RUNNING TEST my-sed ---
+# # # 	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
+# 	valgrind --track-origins=yes ./my-sed "is" "isn't" test1.txt
+# 	echo
+	./my-sed apple orange test
+
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
