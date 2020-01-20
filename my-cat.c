@@ -6,7 +6,6 @@
 */
 
 // TODO use strerror to output error messages (mainly for fopen fd)
-#define _POSIX_C_SOURCE 200809L
 #include<stdio.h>
 #include<errno.h>
 #include<string.h>
@@ -23,7 +22,7 @@ int main(int argc, char *argv[]){
 		file = fopen(argv[i], "r");
 		if(file == NULL){
 			printf("%s: Could not open file %s\n", argv[0], argv[i]);
-			printf("%s: %s",argv[0], strerror(errno));
+			printf("%s: %s\n",argv[0], strerror(errno));
 			return 1;
 		}
 		/* Read each line of the file, as long as there are 
