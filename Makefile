@@ -29,7 +29,7 @@ sed-test: all ${SED}
 	./my-sed "is" "isn't" test1.txt test2.txt
 # 	@echo --- RUNNING TEST my-sed ---
 # # 	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
-# 	valgrind --track-origins=yes ./my-sed "is" "isn't" test1.txt
+	valgrind --track-origins=yes ./my-sed "is" "isn't" test1.txt
 
 uniq-test: ${UNIQ}
 	@echo --- RUNNING TEST my-uniq ---
@@ -43,7 +43,6 @@ clean:
 	rm -f ${CAT} ${CAT}.o  *.o *.tgz *.zip
 	rm -f ${SED} ${SED}.o  *.o *.tgz *.zip
 	rm -f ${UNIQ} ${UNIQ}.o *.o *.tgz *.zip
-	rm a.out
 
 # make a tarball
 tarball: clean

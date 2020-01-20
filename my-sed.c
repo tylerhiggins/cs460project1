@@ -1,6 +1,5 @@
 /*
 find and replace
-TODO - check valgrind
 TODO - error checking
 TODO - test case sensitive find/replace
 TODO - handle files we can't open
@@ -26,9 +25,7 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 	// printf("find: %s\nreplace: %s\nline: %s\nstringToPrint: %s\n", find, replace, line, stringToPrint);
 	char* substring = (char*) calloc(1, strlen(find) * sizeof(char) + 1); //store lines
 	substring[0] = '\0';
-	if (substring == NULL) {
-		exit(1);
-	}
+	if (substring == NULL) {exit(1);}
 	// naiive string matching
 	for (int i = 0; i < strlen(line)-1; i++) {
 		// copy substring
@@ -55,7 +52,9 @@ int main(int argc, char*argv[]){
 	int buf_size = 1024;								// size of buffer
 	char* stringToPrint;
 	char* find = (char*) calloc(1, buf_size * sizeof(char) + 1);				// buffer to store find string
+	if (find == NULL) {exit(1);}
 	char* replace = (char*) calloc(1, buf_size * sizeof(char) + 1);			// buffer to store replace string
+	if (replace == NULL) {exit(1);}
 	find[0] = '\0';
 	replace[0] = '\0';
 	char* line = NULL;
@@ -84,9 +83,11 @@ int main(int argc, char*argv[]){
 	else if (argc == 3) {
 		// printf("Getting stdin:\n");
 		line = (char*) calloc(1, buf_size * sizeof(char));			// buffer to store replace string
+		if (line == NULL) {exit(1);}
 		line[0] = '\0';
 		if (fgets(line, buf_size, stdin) != NULL) {
 			stringToPrint = (char*) calloc(1, buf_size + strlen(line) * sizeof(char) + 1);			// string that will be printed
+			if (stringToPrint == NULL) {exit(1);}
 			stringToPrint[0] = '\0';
 			findReplace(find, replace, line, stringToPrint);
 			printf("%s\n", stringToPrint);	
@@ -111,6 +112,7 @@ int main(int argc, char*argv[]){
 					continue;
 				}
 				stringToPrint = (char*) calloc(1, buf_size + sizeof(char) * (linelen) + 1);			// string that will be printed
+				if (stringToPrint == NULL) {exit(1);}
 				stringToPrint[0] = '\0';
 				findReplace(find, replace, line, stringToPrint);
 				printf("%s\n", stringToPrint);	
