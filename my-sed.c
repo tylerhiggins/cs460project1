@@ -12,8 +12,6 @@ TODO - handle files we can't open
 #include <stdio.h>
 #include <errno.h>
 
-int DEBUG = 0;
-
 void findReplace(char* find, char* replace, char* line, char* stringToPrint);
 
 /*
@@ -43,8 +41,6 @@ void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
 		else {
 			strncat(stringToPrint, &line[i], 1);
 		}
-		
-		// if (DEBUG == 1) printf("%d, cmp: '%s' '%s' --> %s\n", i, find, substring, stringToPrint);
 		substring[0] = '\0';
 	}
 	free(substring);
@@ -83,7 +79,6 @@ int main(int argc, char*argv[]){
 	}
 
 	// get input from stdin
-	// TODO use realloc if string gets too large
 	else if (argc == 3) {
 		// printf("Getting stdin:\n");
 		line = (char*) calloc(1, buf_size * sizeof(char));			// buffer to store replace string
@@ -125,8 +120,8 @@ int main(int argc, char*argv[]){
 			}
 			fclose(fp);
 		}
-		free(line);	// line memory is allocated by getline
 	}
+	free(line);	// line memory is allocated by getline
 	free(find);
 	free(replace);
 	return 0;
