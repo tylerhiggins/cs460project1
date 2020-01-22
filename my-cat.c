@@ -4,8 +4,6 @@
  * files as arguments from the command line and prints them 
  * to std out.
 */
-
-// TODO use strerror to output error messages (mainly for fopen fd)
 #include<stdio.h>
 #include<errno.h>
 #include<string.h>
