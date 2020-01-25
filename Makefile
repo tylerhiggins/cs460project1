@@ -79,8 +79,15 @@ tarball: clean
 	rm -f ${PROJ}.zip ${PROJ}.tgz
 	tar -czf ${PROJ}.tgz *
 
+# make zip file excluding test files and git
 # make a zip file
 zip: clean
+	rm -f ${PROJ}.zip ${PROJ}.tgz
+	zip -r ${PROJ}.zip *.c Makefile README.md
+
+
+# make a zip file including git
+zip-all: clean
 	rm -f ${PROJ}.zip ${PROJ}.tgz
 	zip -r ${PROJ}.zip *
 
