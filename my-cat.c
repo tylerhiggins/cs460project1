@@ -4,10 +4,12 @@
  * files as arguments from the command line and prints them 
  * to std out.
 */
+
 #include<stdio.h>
 #include<errno.h>
 #include<string.h>
 #include<stdlib.h>
+
 int main(int argc, char *argv[]){
 	long unsigned int buf = 0;			// Buffer size. 
 	char *buffer = NULL;       // Buffer in which to store characters.
@@ -21,7 +23,7 @@ int main(int argc, char *argv[]){
 		if(file == NULL){
 			printf("%s: Could not open file %s\n", argv[0], argv[i]);
 			printf("%s: %s\n",argv[0], strerror(errno));
-			return 1;
+			return 0;
 		}
 		/* Read each line of the file, as long as there are 
 		characters to be read. */

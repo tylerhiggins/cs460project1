@@ -1,9 +1,11 @@
 /*
-find and replace
-TODO - error checking
-TODO - test case sensitive find/replace
-TODO - handle files we can't open
-- test file that can't be opened, make it have a newline and exit if this happens
+my_sed.c: Written by Julian Keller. This program performs a similar 
+task to find and replace in the program "sed" in Unix/Linux Systems.
+It takes two strings and and file/stdin and finds and replaces strings,
+the results are printed to stdout. If no file is given, the program
+accepts input from stdin.
+
+Usage: ./my-sed find replace file.txt
 */
 
 #include <ctype.h>
@@ -22,7 +24,6 @@ line - a string which will have variables substituted
 stringToPrint - string that will be printed after find/replace
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
-	// if (DEBUG == 1) printf("\nfind: %s\nreplace: %s\nline: %s\n", find, replace, line);
 	char* substring = (char*) calloc(1, strlen(find) * sizeof(char) + 1); //store lines
 	substring[0] = '\0';
 	if (substring == NULL) {exit(1);}
@@ -53,14 +54,13 @@ int main(int argc, char*argv[]){
 	char* stringToPrint;
 	char* find = (char*) calloc(1, buf_size * sizeof(char) + 1);				// buffer to store find string
 	if (find == NULL) {exit(1);}
-	char* replace = (char*) calloc(1, buf_size * sizeof(char) + 1);			// buffer to store replace string
+	char* replace = (char*) calloc(1, buf_size * sizeof(char) + 1);				// buffer to store replace string
 	if (replace == NULL) {exit(1);}
 	find[0] = '\0';
 	replace[0] = '\0';
 	char* line = NULL;
 	size_t linecap = 512;
 	ssize_t linelen = 0;
-
 	// save the find and replace arguments
 	if (argc > 2) {
 		strncpy(find, argv[1], strlen(argv[1]) + 2);			
@@ -72,15 +72,12 @@ int main(int argc, char*argv[]){
 		       replace[strlen(replace)]= '\0';
 		}	
 	}
-
 	// show user usage of my-sed if less than 3 args
 	if (argc < 3) {
 		printf("find term replace term [file ...]\n");
 	}
-
 	// get input from stdin
 	else if (argc == 3) {
-		// printf("Getting stdin:\n");
 		line = (char*) calloc(1, buf_size * sizeof(char));			// buffer to store replace string
 		if (line == NULL) {exit(1);}
 		line[0] = '\0';
@@ -93,7 +90,6 @@ int main(int argc, char*argv[]){
 			free(stringToPrint);	
 		}
 	}
-
 	// user specified a find, replace, and at least one file
 	else if (argc > 3) {
 		// iterate through each file from the cmd line

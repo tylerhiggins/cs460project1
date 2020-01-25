@@ -22,24 +22,51 @@ all: ${OBJS}
 
 # program tests
 cat-test: ${CAT}
-	@echo --- RUNNING TEST my-cat ---
+	@echo --- RUNNING TEST 1 my-cat ---
 	./my-cat mobydick.txt oneline.txt test1.txt test2.txt
 
+	@echo "\n"--- RUNNING TEST 2 my-cat ---
+	./my-cat asdfasdfasdf
+
+	@echo "\n"--- RUNNING TEST 3 my-cat ---
+	./my-cat
+
+	@echo "\n"--- RUNNING TEST 3 my-cat ---
+	./my-cat test1.txt "" test2.txt
+
+	@echo "\n"--- RUNNING TEST 3 my-cat ---
+	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-cat mobydick.txt oneline.txt test1.txt test2.txt
+
+
 sed-test: all ${SED}
-# 	./my-sed "is" "isn't" test1.txt test2.txt
-# # 	@echo --- RUNNING TEST my-sed ---
-# # # 	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./my-sed "is" "isn't" test1.txt
-	valgrind --track-origins=yes --leak-check=full ./my-sed the TEST mobydick.txt
-# 	echo
-# 	./my-sed apple orange test
+	@echo "\n"--- RUNNING TEST 1 my-sed ---
+	./my-sed "is" "isn't" test1.txt test2.txt mobydick.txt
+
+	@echo "\n"--- RUNNING TEST 2 my-sed ---
+	valgrind --track-origins=yes --leak-check=full ./my-sed the TEST mobydick.txt test1.txt test2.txt oneline.txt
+
+	@echo "\n"--- RUNNING TEST 3 my-sed ---
+	./my-sed
+
+	@echo "\n"--- RUNNING TEST 4 my-sed ---
+	valgrind --track-origins=yes --leak-check=full ./my-sed the TEST 
 
 
 uniq-test: ${UNIQ}
-	@echo --- RUNNING TEST my-uniq ---
-	./my-uniq test1.txt test2.txt
+	@echo "\n"--- RUNNING TEST 1 my-uniq ---
+# 	./my-uniq test1.txt test2.txt fakefile
 
-# val: all
-# 	valgrind --leak-check=full --show-leak-kinds=all ./${EXEC}
+	@echo "\n"--- RUNNING TEST 2 my-uniq ---
+	./my-uniq mobydick.txt
+
+	@echo "\n"--- RUNNING TEST 4 my-uniq ---
+	valgrind --track-origins=yes --leak-check=full ./my-uniq mobydick.txt
+
+	@echo "\n"--- RUNNING TEST 5 my-uniq ---
+	./my-uniq
+
+	
+
 
 # deletes unneccessary files
 clean:
