@@ -14,3 +14,9 @@ Description: This program finds adjacent duplicate lines from multiple files, re
 
 ## Compile and run instructions ##
 To compile: `make all`
+
+
+## Authors
+- Tyler Higgins
+- Jacob Pugsley
+- Julian Keller
