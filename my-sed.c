@@ -24,7 +24,7 @@ line - a string which will have variables substituted
 stringToPrint - string that will be printed after find/replace
 */
 void findReplace(char* find, char* replace, char* line, char* stringToPrint) {
-	char* substring = (char*) calloc(1, strlen(find) * sizeof(char) + 1); //store lines
+	char* substring = (char*) calloc(1, (strlen(find) * sizeof(char)) + 1); //store lines
 	substring[0] = '\0';
 	if (substring == NULL) {exit(1);}
 	// naiive string matching
@@ -106,9 +106,9 @@ int main(int argc, char*argv[]){
 					return 1;
 					continue;
 				}
-				stringToPrint = (char*) calloc(1, buf_size + sizeof(char) * (linelen) + 1);			// string that will be printed
+				stringToPrint = (char*) calloc(1, buf_size + (sizeof(char) * (linelen) * 2) + 1);			// string that will be printed
 				if (stringToPrint == NULL) {exit(1);}
-				stringToPrint[0] = '\0';
+				// stringToPrint[0] = '\0';
 				findReplace(find, replace, line, stringToPrint);
 				printf("%s\n", stringToPrint);
 				stringToPrint[0] = '\0';
