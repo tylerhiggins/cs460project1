@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 
 int uniq( FILE* fp ){
 	char* line1 = NULL;
@@ -17,18 +18,26 @@ int uniq( FILE* fp ){
 	//after the comparison, copy the second buffer into the first
 
 	int repeated = 0;
-	while( (read = getline(&line2, &n, fp)) != -1 ){
-
+	while( (read = getline(&line2, &n, fp)) != -1){
+		
 		int cmp = strncmp(line1, line2, strlen(line1));
 
 		if( cmp == 0 ){
 			repeated = 1;
 		}else if( repeated ){
-			printf("%s", line1);
+			printf("%s\n", line1);
 			repeated = 0;
 		}
 
-		strncpy(line1, line2, strlen(line1));
+		//the number of characters to copy should be
+		//  the size of the longest line
+		size_t toCopy = 0;
+		if( strlen(line1) >= strlen(line2) ){
+			toCopy = strlen(line1);
+		}else{
+			toCopy = strlen(line2);
+		}
+		strncpy(line1, line2, toCopy);
 	}
 	free(line1);
 	free(line2);
