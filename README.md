@@ -15,7 +15,7 @@ Description: This program finds adjacent duplicate lines from multiple files, re
 ## Compile and run instructions ##
 To compile: `make all`  
   
-You can run tests on each progam:
+You can run tests on each progam:  
 my-cat test: `make cat-test`  
 my-sed test: `make sed-test`
 my-uniq test: `make uniq-test`
