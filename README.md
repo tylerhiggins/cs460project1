@@ -13,7 +13,14 @@ Usage: `./my-uniq [file ...]`
 Description: This program finds adjacent duplicate lines from multiple files, removes them, and prints them to stdout. If there is no input file specifed, this program will read from stdin. 
 
 ## Compile and run instructions ##
-To compile: `make all`
+To compile: `make all`  
+  
+You can run tests on each progam:
+my-cat test: `make cat-test`  
+my-sed test: `make sed-test`
+my-uniq test: `make uniq-test`
+
+You can customize the test files in the Makefile
 
 
 ## Authors
