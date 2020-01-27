@@ -21,9 +21,8 @@ int main(int argc, char *argv[]){
 		/* Open the file. */
 		file = fopen(argv[i], "r");
 		if(file == NULL){
-			printf("%s: Could not open file %s\n", argv[0], argv[i]);
-			printf("%s: %s\n",argv[0], strerror(errno));
-			return 0;
+			printf("cat: cannot open file\n");
+			return 1;
 		}
 		/* Read each line of the file, as long as there are 
 		characters to be read. */
