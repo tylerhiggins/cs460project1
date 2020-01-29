@@ -16,11 +16,11 @@ int uniq( FILE* fp ){
 	//there may be more than one adjacent repeat of each line, so don't print them until an
 	//  unequal line is encountered. set the repeated flag when an adjacent repetition is detected
 	//after the comparison, copy the second buffer into the first
-
+	int cmp = -1;
 	int repeated = 0;
 	while( (read = getline(&line2, &n, fp)) != -1){
 		
-		int cmp = strncmp(line1, line2, strlen(line1));
+		cmp = strncmp(line1, line2, strlen(line2));
 
 		if( cmp == 0 ){
 			repeated = 1;
@@ -39,6 +39,8 @@ int uniq( FILE* fp ){
 		}
 		strncpy(line1, line2, toCopy);
 	}
+	if(cmp == 0)
+		printf("%s\n", line1);
 	free(line1);
 	free(line2);
 	return 0;
